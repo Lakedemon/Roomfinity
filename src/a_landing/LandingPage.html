@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Roomfinity-Landing Page</title>
+    <link rel="stylesheet" href="Landing.css">
+    <script type="text/javascript">
+        let isMouseOver;
+
+        const demoList = {
+            one: null,
+            two: null,
+            three: null,
+            four: null,
+            five: null,
+            six: null,
+            seven: null,
+            eight: null,
+            nine: null,
+            ten: null,
+        }
+
+        window.onload = function (){
+            let box = document.querySelector(".demo-scroller");
+            box.addEventListener("mouseover", function (){ isMouseOver = true});
+            box.addEventListener("mouseleave", function (){ isMouseOver = false});
+
+            let template = document.querySelector("#demo-item");
+            for (const i in demoList){
+                const clone = template.content.cloneNode(true);
+                clone.querySelector(".text-demo").textContent = `Run ${i} demo`;
+                box.appendChild(clone);
+            }
+
+            const items = Array.from(box.getElementsByClassName("item"));
+
+            let position = 0;
+            let offset = -110
+            items.forEach((item) => item.style.transform = `translate(${offset}%, 10%)`);
+
+            box.addEventListener("wheel", (event) => scroll(event), {passive: true});
+            function scroll (event){
+                position += event.deltaY * 0.1;
+
+                if(position < offset){
+                    box.appendChild(box.firstElementChild);
+                    position = position - offset;
+                } else if(position > -offset){
+                    box.insertBefore(box.lastElementChild, box.firstElementChild);
+                    position = position + offset;
+                }
+                items.forEach((item) => item.style.transform = `translate(${offset + position}%, 10%)`);
+            }
+        }
+
+    </script>
+</head>
+
+
+<body>
+    <template id="demo-item">
+        <div class="item">
+            <a>Demo pic will be here</a>
+            <a class="text-demo" href ="../a_demo/Stranichka.html">Run Demo</a>
+        </div>
+    </template>
+
+    <h1 id="title">Roomfinity</h1>
+    <div class="demo-scroller"></div>
+</body>
+</html>

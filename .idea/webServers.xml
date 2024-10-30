@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="ec60b140-3ec1-4f95-872b-2d92a4708702" name="WebGLParadise" url="http://localhost:8888">
+        <fileTransfer mountedRoot="C:\Users\leoni\WebstormProjects" accessType="MOUNT" port="0" />
+      </webServer>
+    </option>
+  </component>
+</project>
